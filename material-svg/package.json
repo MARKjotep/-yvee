@@ -1,12 +1,11 @@
 {
   "name": "@yvee/material-svg",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Material SVG utility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "preview"
+    "dist"
   ],
   "scripts": {
     "util": "cp -r ../../misc/util ./",
