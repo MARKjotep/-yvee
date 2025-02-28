@@ -1,7 +1,7 @@
 {
-  "name": "@yvee/svg",
+  "name": "@yvee/builder",
   "version": "0.0.1",
-  "description": "SweetSS utility",
+  "description": "Yvee builder",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -30,8 +30,12 @@
     "url": "https://github.com/MARKjotep/-yvee/issues"
   },
   "homepage": "https://github.com/MARKjotep/-yvee#readme",
-  "dependencies": {
-    "yvee": "link:yvee"
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.3"
   },
   "publishConfig": {
     "access": "public"
