@@ -12,8 +12,8 @@ import { $$, isFN, ngify, oFItems, oItems, oLen } from "./@";
 import { BunPlugin } from "bun";
 
 export default class Builder {
-  dir: string = "./src";
-  out: string = "./app";
+  dir: string;
+  out: string;
   files: string[];
   external: string[];
   drop: string[];
@@ -31,6 +31,8 @@ export default class Builder {
     external = [],
     drop = [],
     plugins = [],
+    out = "./app",
+    dir = "./src",
   }: {
     files: string[];
     target?: "browser" | "bun";
@@ -39,7 +41,11 @@ export default class Builder {
     external?: string[];
     drop?: string[];
     plugins?: BunPlugin[];
+    out?: string;
+    dir?: string;
   }) {
+    this.out = out;
+    this.dir = dir;
     this.files = files.map((m) => (this.dir + "/" + m).replaceAll("//", "/"));
     this.hashAsset = hashAsset == undefined ? true : hashAsset;
     this.external = external;

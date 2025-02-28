@@ -13,7 +13,7 @@ declare class Builder {
     hashAsset: boolean;
     plugins: BunPlugin[];
     private clearing?;
-    constructor({ files, target, define, hashAsset, external, drop, plugins, }: {
+    constructor({ files, target, define, hashAsset, external, drop, plugins, out, dir, }: {
         files: string[];
         target?: "browser" | "bun";
         define?: Record<string, any>;
@@ -21,6 +21,8 @@ declare class Builder {
         external?: string[];
         drop?: string[];
         plugins?: BunPlugin[];
+        out?: string;
+        dir?: string;
     });
     clear(c?: {
         exclude: string[];
