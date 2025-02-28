@@ -1,11 +1,12 @@
 {
   "name": "@yvee/material-svg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Material SVG utility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "preview"
   ],
   "scripts": {
     "util": "cp -r ../../misc/util ./",
@@ -30,8 +31,12 @@
     "url": "https://github.com/MARKjotep/-yvee/issues"
   },
   "homepage": "https://github.com/MARKjotep/-yvee#readme",
-  "dependencies": {
-    "yvee": "latest"
+  "devDependencies": {
+    "yvee": "latest",
+    "sweetss": "latest",
+    "@sweetss/colors": "latest",
+    "@sweetss/qt": "latest",
+    "@types/bun": "latest"
   },
   "publishConfig": {
     "access": "public"
