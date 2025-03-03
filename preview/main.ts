@@ -18,9 +18,19 @@ class indx extends response {
     });
   }
 }
+@route("/<string:tab>")
+class inSTR extends response {
+  async get() {
+    //
+    return await App.html({
+      path: this.path,
+    });
+  }
+}
 
 index({
-  path: "/",
+  path: "/svg",
+  name: "svg",
 });
 
 // serve();

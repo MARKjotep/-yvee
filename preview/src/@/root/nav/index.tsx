@@ -2,25 +2,13 @@ import { $, $$, frag, dom, __ } from "yvee";
 import * as i from "./css";
 import { A, path } from "../../..";
 
-import {
-  PrecisionManufacturing,
-  HomeAndGarden,
-  PersonPlay,
-} from "@yvee/material-svg";
+import { RocketLaunch } from "@yvee/material-svg";
 import { Marky as MK } from "./svg";
 
 const aces = {
   "/": {
-    t: "Home",
-    s: <HomeAndGarden />,
-  },
-  "/journal": {
-    t: "Journal",
-    s: <PersonPlay />,
-  },
-  "/projects": {
-    t: "Projects",
-    s: <PrecisionManufacturing />,
+    t: "Yvee",
+    s: <RocketLaunch />,
   },
 };
 
@@ -56,15 +44,15 @@ export default (a: attr & { isM?: boolean }, ...D: ctx[]) => {
 
 const Marky = ({ is = false }) => {
   return (
-    <A
-      href="/marky"
+    <a
+      href="https://github.com/MARKjotep"
       draggable="false"
-      class={[i.lia, i.marky, is ? i.slctd : undefined]}
+      class={[i.lia, i.marky]}
     >
       <span>
         <MK />
       </span>
-      <span>Marky</span>
-    </A>
+      <span>MARKjotep</span>
+    </a>
   );
 };

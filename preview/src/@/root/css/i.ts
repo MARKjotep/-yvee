@@ -2,6 +2,7 @@ import { SweetSS, ps, v, f, $$ } from "sweetss";
 import { $ } from "@sweetss/qt";
 import Nav from "../nav/css/i";
 import Foot from "../footer/css/i";
+import Home from "../../../home/css/i";
 
 import {
   _bgc,
@@ -17,7 +18,7 @@ import {
 
 const { cx, dom, save, sweet } = new SweetSS({
   __filename,
-  sweetSS: [Nav, Foot],
+  sweetSS: [Nav, Foot, Home],
 });
 
 export default sweet;
@@ -112,7 +113,6 @@ cx.main = [
   $.WIDTH.pr100,
   $.HEIGHT.pr100,
   $.MIN.HEIGHT.LG.screen,
-  $.BORDER.b1,
 ];
 
 cx.ctx = [
@@ -129,5 +129,5 @@ cx.ctx = [
 save({
   dir: ["./src", "./app"],
   mapDir: __dirname,
-  minify: false,
+  minify: true,
 });

@@ -1,0 +1,1 @@
+export const hero="hero",home="home",links="links",selection="selection",slctd="slctd";

@@ -1,1 +1,1 @@
-export const footer="footer";
+export const built="built",footer="footer",hearty="hearty";

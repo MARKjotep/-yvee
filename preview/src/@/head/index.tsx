@@ -15,7 +15,7 @@ export default (head: (heads?: headAttr) => void) => {
     link: [
       {
         rel: "stylesheet",
-        href: resolvePath("/", root),
+        href: root,
         as: "style",
       },
       // {
