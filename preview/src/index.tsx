@@ -14,7 +14,11 @@ class index extends doc {
     this.css = [main];
   }
   body(): Promise<Dom> | Dom {
-    return <Body>hola</Body>;
+    return (
+      <Body>
+        <div>wow</div>
+      </Body>
+    );
   }
 }
 

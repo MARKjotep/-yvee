@@ -29,6 +29,7 @@ cx.navy = [
   $.FLEX.CENTER.start.LG.START.start,
   $.FLEX.LG.column,
   $.DISPLAY.flex.PRINT.none,
+  $.BORDER.b1,
 ];
 
 const _nClr = Var({ _nClr: _clr });

@@ -4,7 +4,6 @@ import { A, path } from "../../..";
 
 import {
   PrecisionManufacturing,
-  Robot2,
   HomeAndGarden,
   PersonPlay,
 } from "@yvee/material-svg";

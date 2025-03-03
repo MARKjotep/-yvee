@@ -87,6 +87,9 @@ html, body {
 .main, .n_slctd::before {
   height: 100%;
 }
+.main, .n_navy {
+  border: 1px solid currentColor;
+}
 .n_navy {
   position: sticky; 
   bottom: 0; 

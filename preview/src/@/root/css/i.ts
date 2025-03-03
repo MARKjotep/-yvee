@@ -112,6 +112,7 @@ cx.main = [
   $.WIDTH.pr100,
   $.HEIGHT.pr100,
   $.MIN.HEIGHT.LG.screen,
+  $.BORDER.b1,
 ];
 
 cx.ctx = [
