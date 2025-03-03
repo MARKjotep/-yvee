@@ -22,6 +22,7 @@ export default class Builder {
   exclude: string[] = ["index.html"];
   hashAsset: boolean;
   plugins: BunPlugin[] = [];
+  successFN?: () => Promise<void>;
   private clearing?: boolean = false;
   constructor({
     files,
@@ -33,6 +34,7 @@ export default class Builder {
     plugins = [],
     out = "./app",
     dir = "./src",
+    successFN,
   }: {
     files: string[];
     target?: "browser" | "bun";
@@ -43,6 +45,7 @@ export default class Builder {
     plugins?: BunPlugin[];
     out?: string;
     dir?: string;
+    successFN?: () => Promise<void>;
   }) {
     this.out = out;
     this.dir = dir;
@@ -53,7 +56,7 @@ export default class Builder {
     this.plugins = plugins;
     isDir(this.out);
     this.target = target;
-
+    this.successFN = successFN;
     this.define = define;
   }
   clear(c: { exclude: string[] } = { exclude: [] }) {
@@ -83,51 +86,57 @@ export default class Builder {
 
     return this;
   }
-  build() {
+  async build() {
     const asset = `[dir]/[name]${this.hashAsset ? "-[hash]" : ""}.[ext]`;
 
     if (this.files.length) {
-      Bun.build({
-        entrypoints: this.files,
-        outdir: this.out,
-        splitting: true,
-        minify: {
-          identifiers: true,
-          whitespace: true,
-          syntax: true,
-        },
-        target: (this.target as "browser") ?? "browser",
-        naming: {
-          chunk: "[dir]/[name]-[hash].[ext]",
-          entry: "[dir]/[name].[ext]",
-          asset,
-        },
-        define: {
-          ...ProcessDefine(this.define),
-        },
-        loader: {
-          ".css": "file",
-        },
-        external: this.external,
-        drop: this.drop,
-        plugins: this.plugins,
-      })
-        .then((e) => {
-          if (e.success) {
-            const dt = new Date().toLocaleTimeString();
-            $$.p = `builder @ ${dt}`;
-          } else {
-            $$.p = e.logs;
-          }
-        })
-        .catch((e) => {
-          $$.p = e;
+      try {
+        const Build = await Bun.build({
+          entrypoints: this.files,
+          outdir: this.out,
+          splitting: true,
+          minify: {
+            identifiers: true,
+            whitespace: true,
+            syntax: true,
+          },
+          target: (this.target as "browser") ?? "browser",
+          naming: {
+            chunk: "[dir]/[name]-[hash].[ext]",
+            entry: "[dir]/[name].[ext]",
+            asset,
+          },
+          define: {
+            ...ProcessDefine(this.define),
+          },
+          loader: {
+            ".css": "file",
+          },
+          external: this.external,
+          drop: this.drop,
+          plugins: this.plugins,
         });
+
+        if (Build.success) {
+          const dt = new Date().toLocaleTimeString();
+          $$.p = `builder @ ${dt}`;
+          // run fn here
+          try {
+            await this.successFN?.();
+          } catch (e) {
+            $$.p = e;
+          }
+        } else {
+          $$.p = Build.logs;
+        }
+      } catch (e) {
+        $$.p = e;
+      }
     }
 
     return this;
   }
-  watch(fn?: (event: WatchEventType, filename: string | null) => void) {
+  async watch(fn?: (event: WatchEventType, filename: string | null) => void) {
     const watcher = watch(
       this.dir,
       { recursive: true },
@@ -135,7 +144,7 @@ export default class Builder {
         if (filename && filename.endsWith("tsx")) {
           this.clearing && this.clear();
           try {
-            this.build();
+            await this.build();
           } catch (e) {
             console.error(e);
           }

@@ -12,8 +12,9 @@ declare class Builder {
     exclude: string[];
     hashAsset: boolean;
     plugins: BunPlugin[];
+    successFN?: () => Promise<void>;
     private clearing?;
-    constructor({ files, target, define, hashAsset, external, drop, plugins, out, dir, }: {
+    constructor({ files, target, define, hashAsset, external, drop, plugins, out, dir, successFN, }: {
         files: string[];
         target?: "browser" | "bun";
         define?: Record<string, any>;
@@ -23,12 +24,13 @@ declare class Builder {
         plugins?: BunPlugin[];
         out?: string;
         dir?: string;
+        successFN?: () => Promise<void>;
     });
     clear(c?: {
         exclude: string[];
     }): this;
-    build(): this;
-    watch(fn?: (event: WatchEventType, filename: string | null) => void): void;
+    build(): Promise<this>;
+    watch(fn?: (event: WatchEventType, filename: string | null) => void): Promise<void>;
 }
 
 export { Builder as default };

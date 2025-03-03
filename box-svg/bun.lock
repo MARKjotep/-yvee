@@ -1,0 +1,16 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "@yvee/material-svg",
+      "devDependencies": {
+        "yvee": "latest",
+      },
+    },
+  },
+  "packages": {
+    "typescript": ["typescript@5.7.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw=="],
+
+    "yvee": ["yvee@0.0.6", "", { "peerDependencies": { "typescript": "^5.7.3" } }, "sha512-OI4RApkvnTdSCWBWj6cjYc/s91/Lki3WMJPx6jqHm7a8YOwIsmzUpd9PSnfjx9jfPTHK24HlL665ufef0YEP8w=="],
+  }
+}
