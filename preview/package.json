@@ -1,0 +1,29 @@
+{
+  "scripts": {
+    "init": "mkdir -p ./src && mkdir -p ./app && echo '' > main.ts && echo '' > ./src/index.tsx && bun update",
+    "builder": "bun builder.ts",
+    "css": "bun css.ts"
+  },
+  "dependencies": {
+    "rossa": "link:rossa",
+    "yvee": "link:yvee"
+  },
+  "devDependencies": {
+    "@yvee/builder": "latest",
+    "@yvee/material-svg": "latest",
+    "@yvee/box-svg": "latest",
+    "sweetss": "latest",
+    "@sweetss/qt": "latest",
+    "@sweetss/colors": "latest",
+    "@types/node": "^22.13.9",
+    "@types/bun": "latest",
+    "chokidar": "^4.0.3",
+    "@sweetss/shaker": "link:@sweetss/shaker"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "name": "jan",
+  "module": "index.ts",
+  "type": "module"
+}
