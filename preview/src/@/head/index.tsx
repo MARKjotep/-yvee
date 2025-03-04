@@ -14,7 +14,7 @@ export default (head: (heads?: headAttr) => void) => {
     meta: new Meta("Made with love by marky"),
     base: [
       {
-        href: "/",
+        href: "/-yvee/",
       },
     ],
     link: [
