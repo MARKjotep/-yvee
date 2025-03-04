@@ -12,11 +12,6 @@ export default (head: (heads?: headAttr) => void) => {
   head({
     title: "Welcome!",
     meta: new Meta("Made with love by marky"),
-    base: [
-      {
-        href: "/-yvee/",
-      },
-    ],
     link: [
       {
         rel: "stylesheet",

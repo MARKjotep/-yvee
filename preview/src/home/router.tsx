@@ -15,7 +15,7 @@ class KKK extends doc {
 
 @route("/svg")
 class SVGS extends doc {
-  import = import("../_svg");
+  import = import("../svgindx");
 }
 
 export default () => {
