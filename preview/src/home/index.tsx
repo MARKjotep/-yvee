@@ -7,7 +7,6 @@ export default ({ tab = "/" }) => {
   return (
     <div class={[i.home]}>
       <Hero />
-      <Route />
     </div>
   );
 };

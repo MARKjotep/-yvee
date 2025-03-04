@@ -1,1 +1,1 @@
-export const hero="hero",home="home",links="links",selection="selection",slctd="slctd";
+export const hero="hero",home="home",links="links",selection="selection",slctd="slctd",yveei="yveei";

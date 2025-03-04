@@ -1,18 +1,21 @@
 import { $, $$, frag, dom, __ } from "yvee";
 import * as i from "./css";
 import { A, path } from "../../..";
-
-import { RocketLaunch } from "@yvee/material-svg";
-import { Marky as MK } from "./svg";
+import { CategoryAlt, Health } from "@yvee/box-svg";
+import { Yvee } from "../../svg";
 
 const aces = {
   "/": {
     t: "Yvee",
-    s: <RocketLaunch />,
+    s: <Yvee />,
   },
   "/svg": {
     t: "SVG",
-    s: <RocketLaunch />,
+    s: <Health />,
+  },
+  "/library": {
+    t: "Library",
+    s: <CategoryAlt />,
   },
 };
 
@@ -22,13 +25,21 @@ export default (a: attr & { isM?: boolean }, ...D: ctx[]) => {
 
   __.class(_a, [i.navy]);
 
+  const PT = path.value;
+
   return (
     <nav {..._a}>
       <ul class={[i.list]}>
         {__.O.items(aces).map(([k, v]) => {
+          let isc = undefined;
+          if (k !== "/") {
+            isc = PT.includes(k) ? i.slctd : undefined;
+          } else {
+            isc = PT.endsWith(k) ? i.slctd : undefined;
+          }
           return (
             <li>
-              <A href={k} draggable="false" class={[i.lia, i.slctd]}>
+              <A href={k} draggable="false" class={[i.lia, isc]}>
                 <span>{v.s}</span>
                 <span>{v.t}</span>
               </A>
@@ -50,9 +61,7 @@ const Marky = ({ is = false }) => {
       draggable="false"
       class={[i.lia, i.marky]}
     >
-      <span>
-        <MK />
-      </span>
+      <span>{/* <logo.Github /> */}</span>
       <span>MARKjotep</span>
     </a>
   );

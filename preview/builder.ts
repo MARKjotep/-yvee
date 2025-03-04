@@ -15,8 +15,7 @@ BLDR.successFN = async () => {
   await procee.exited;
 };
 
-BLDR.clear({
-  exclude: [],
-});
+BLDR.clear();
+
 await BLDR.build();
 await BLDR.watch();

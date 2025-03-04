@@ -1,6 +1,7 @@
 import { SweetSS } from "sweetss";
 import { watch } from "chokidar";
 import Root from "./src/@/root/css/i";
+import SVG from "./src/SVG/css/i";
 
 //
 
@@ -30,4 +31,4 @@ const Watcher = (...sss: SweetSS[]) => {
   return;
 };
 
-Watcher(Root);
+Watcher(Root, SVG);

@@ -17,7 +17,7 @@ cx.home = [
 
 cx.hero = [
   //
-  $.MIN.HEIGHT[20],
+  $.MIN.HEIGHT[30],
   $.FLEX.CENTER.center.column.gap2,
 
   ps.child("h1")(
@@ -34,6 +34,14 @@ cx.hero = [
     $.MAX.WIDTH[60],
     $.TEXT.INDENT[2.5],
   ),
+];
+
+cx.yveei = [
+  //
+
+  $.HEIGHT[13].MD[15],
+  $.WIDTH[13].MD[15],
+  $.COLOR.AUTODARK.aliceblue,
 ];
 
 cx.selection = [{}];

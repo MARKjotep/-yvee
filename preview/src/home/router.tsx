@@ -1,68 +1,18 @@
-import { $, $$, frag, dom, doc, Router, Dom, __ } from "yvee";
-import { FamilyHome } from "@yvee/material-svg";
+import { $, $$, frag, dom, doc, Router, Dom, Routes, __ } from "yvee";
+import Body from "../@/root";
 import * as i from "./css";
 
-// Edit and push link history based on the position of the argument from the link --
-// But how??
-export const { load, route, Main, path, A } = new Router();
+export default Routes((r) => {
+  //
 
-@route("/")
-class KKK extends doc {
-  body() {
-    return <div>boy</div>;
+  @r("/")
+  class subin extends doc<{ args: { tab: string } }> {
+    async head() {
+      this.title = "@yvee";
+    }
+    import = import(".");
+    body() {
+      return <Body>{this.import}</Body>;
+    }
   }
-}
-
-@route("/svg")
-class SVGS extends doc {
-  import = import("../svgindx");
-}
-
-export default () => {
-  return (
-    <div class={[i.selection]}>
-      <Links />
-      <Main />
-    </div>
-  );
-};
-
-const asa: Record<string, any> = {
-  "/": <FamilyHome />,
-  "/svg": "SVG",
-};
-
-const Links = () => {
-  const pt = path.value;
-  const _e: events = {
-    watch() {
-      const _E = $(this);
-      return [
-        (pt) => {
-          //
-          _E.children.forEach((fc) => {
-            const HFC = fc.attr.get("href");
-            if (HFC && HFC === pt) {
-              fc.add(i.slctd);
-            } else {
-              fc.remove(i.slctd);
-            }
-          });
-        },
-        path,
-      ];
-    },
-  };
-
-  return (
-    <div class={[i.links]} on={_e}>
-      {__.O.items(asa).map(([k, v]) => {
-        return (
-          <A href={k} class={[pt === k ? i.slctd : undefined]}>
-            {v}
-          </A>
-        );
-      })}
-    </div>
-  );
-};
+});

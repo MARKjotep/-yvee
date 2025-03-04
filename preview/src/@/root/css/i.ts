@@ -2,7 +2,7 @@ import { SweetSS, ps, v, f, $$ } from "sweetss";
 import { $ } from "@sweetss/qt";
 import Nav from "../nav/css/i";
 import Foot from "../footer/css/i";
-import Home from "../../../home/css/i";
+import Home from "../../../HOME/css/i";
 
 import {
   _bgc,
@@ -119,6 +119,7 @@ cx.ctx = [
   //
   $.FLEX.grow(1).column.CENTER.start,
   $.WIDTH.pr100,
+  $.HEIGHT.pr100,
 ];
 
 /*

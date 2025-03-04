@@ -37,7 +37,7 @@
 
     "@types/ws": ["@types/ws@8.5.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw=="],
 
-    "@yvee/box-svg": ["@yvee/box-svg@0.0.1", "", {}, "sha512-enRjkvtOGfT0LeY/rO7lHUzAFCLTRdGJ8oN0eBQXHnwaYRU02vSXwSIVUjTGvibnn69T819Ef0MAjeSx/Kc7pA=="],
+    "@yvee/box-svg": ["@yvee/box-svg@0.0.3", "", {}, "sha512-175jAvC19eBfauFowbmoCem65byQNgl6o9Hq9bOghn2kulmGHiRDXolU1Elu/b3M4m+y7oExrkyDSylOXbElSQ=="],
 
     "@yvee/builder": ["@yvee/builder@0.0.6", "", { "peerDependencies": { "typescript": "^5.7.3" } }, "sha512-T4MF441tOjzxIdiPyYo8HlyxGX7HZHSgHJQvaB3KDeHdeXWQsGhP7NuDGoOM1G4snPkxWAjbmeJr8zkD3VUxxw=="],
 

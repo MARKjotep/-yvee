@@ -1,6 +1,7 @@
 {
-  "name": "@yvee/preview",
-  "version": "0.0.0",
+  "name": "@yvee/material-svg",
+  "version": "0.0.4",
+  "description": "Material SVG utility",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
