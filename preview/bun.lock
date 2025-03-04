@@ -39,7 +39,7 @@
 
     "@yvee/box-svg": ["@yvee/box-svg@0.0.1", "", {}, "sha512-enRjkvtOGfT0LeY/rO7lHUzAFCLTRdGJ8oN0eBQXHnwaYRU02vSXwSIVUjTGvibnn69T819Ef0MAjeSx/Kc7pA=="],
 
-    "@yvee/builder": ["@yvee/builder@0.0.5", "", { "peerDependencies": { "typescript": "^5.7.3" } }, "sha512-7ktf9/DuuSl7y8Rfv10WSq1UohBsObq4tX0tx1QMwI+Cs5DHuwDlK7nqTsiL0uN2w13LOwh6zl+OAQYr9s+aaQ=="],
+    "@yvee/builder": ["@yvee/builder@0.0.6", "", { "peerDependencies": { "typescript": "^5.7.3" } }, "sha512-T4MF441tOjzxIdiPyYo8HlyxGX7HZHSgHJQvaB3KDeHdeXWQsGhP7NuDGoOM1G4snPkxWAjbmeJr8zkD3VUxxw=="],
 
     "@yvee/material-svg": ["@yvee/material-svg@0.0.3", "", {}, "sha512-42WCm3zjDZLJbhxobdzujDYeU5mDXHW4/f20hJZdaNHyPA5LOkl2L1QqQK99RdtrgCXUSQvUsT2vNCz2s/nBwA=="],
 

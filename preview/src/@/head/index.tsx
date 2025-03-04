@@ -18,6 +18,7 @@ export default (head: (heads?: headAttr) => void) => {
         href: root,
         as: "style",
       },
+
       // {
       //   rel: "icon",
       //   sizes: "32x32",

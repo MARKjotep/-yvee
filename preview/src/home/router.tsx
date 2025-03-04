@@ -2,6 +2,8 @@ import { $, $$, frag, dom, doc, Router, Dom, __ } from "yvee";
 import { FamilyHome } from "@yvee/material-svg";
 import * as i from "./css";
 
+// Edit and push link history based on the position of the argument from the link --
+// But how??
 export const { load, route, Main, path, A } = new Router();
 
 @route("/")
@@ -13,7 +15,7 @@ class KKK extends doc {
 
 @route("/svg")
 class SVGS extends doc {
-  import = import("../svg");
+  import = import("../_svg");
 }
 
 export default () => {

@@ -19,7 +19,7 @@ export default class Builder {
   drop: string[];
   target: string;
   define: Record<string, any>;
-  exclude: string[] = ["index.html"];
+  exclude: string[] = [];
   hashAsset: boolean;
   plugins: BunPlugin[] = [];
   successFN?: () => Promise<void>;
@@ -72,7 +72,12 @@ export default class Builder {
         return;
       }
       dirs.forEach((ff) => {
-        if (ff.startsWith(".") || this.exclude.includes(ff)) return;
+        if (
+          ff.startsWith(".") ||
+          ff.endsWith(".html") ||
+          this.exclude.includes(ff)
+        )
+          return;
         const _path = path.join(_PATH, ff);
         if (statSync(_path).isDirectory()) {
           recurse(_path);

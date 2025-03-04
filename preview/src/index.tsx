@@ -5,14 +5,15 @@ import Home from "./home";
 import { load as homeLoader } from "./home/router";
 
 export const { head, route, load, path, A } = new Yvee(import.meta, {
-  pushState: false,
+  pushState: true,
   classes: ["root"],
+  prefix: "/-yvee",
 });
 
 Head(head);
 
 @route("/")
-@route("/-yvee/")
+@route("/-yvee")
 class index extends doc {
   async head() {
     this.title = "@yvee";
