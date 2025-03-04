@@ -10,8 +10,8 @@ const aces = {
     t: "Yvee",
     s: <RocketLaunch />,
   },
-  "/-yvee": {
-    t: "Yvee2",
+  "/svg": {
+    t: "SVG",
     s: <RocketLaunch />,
   },
 };

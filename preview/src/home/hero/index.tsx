@@ -7,7 +7,7 @@ export default (a: attr, ...D: ctx[]) => {
     <div class={[i.hero]}>
       <h1>
         <Bolt />
-        Yvee Utilities
+        Yvee Library
       </h1>
       <p>Components, SVG and etc...</p>
     </div>

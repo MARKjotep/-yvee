@@ -11,9 +11,7 @@ export const { head, route, load, path, A } = new Yvee(import.meta, {
 });
 
 Head(head);
-
 @route("/")
-@route("/-yvee")
 class index extends doc {
   async head() {
     this.title = "@yvee";
@@ -30,7 +28,6 @@ class index extends doc {
 }
 
 @route("/<string:tab>")
-@route("/-yvee/<string:tab>")
 class subin extends doc<{ args: { tab: string } }> {
   async head() {
     this.title = "@yvee " + this.args.tab;
