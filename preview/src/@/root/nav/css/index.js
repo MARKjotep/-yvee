@@ -1,1 +1,0 @@
-export const actv="n_actv",ahide="n_ahide",lia="n_lia",list="n_list",marky="n_marky",navy="n_navy",slctd="n_slctd";

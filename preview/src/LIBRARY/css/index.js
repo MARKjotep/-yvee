@@ -1,1 +1,0 @@
-export const hero_desc="l_hero_desc",hero_top="l_hero_top",hero="l_hero",library="l_library",svLOGO="l_svLOGO";

@@ -1,1 +1,0 @@
-export const hero_desc="s_hero_desc",hero_top="s_hero_top",hero="s_hero",LIST="s_LIST",LOGO="s_LOGO",MAIN="s_MAIN",pin="s_pin",slctd="s_slctd",svg="s_svg",svgs="s_svgs";
