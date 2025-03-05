@@ -1,9 +1,11 @@
-import { SweetSS, ps, fileName, Var, v, med } from "sweetss";
+import { SweetSS, ps, fileName, Var, f, med } from "sweetss";
 import { $ } from "@sweetss/qt";
+import SVGS from "../../svgs/css/i";
+import { _bgc } from "../../@/vars";
 
 const { cx, kf, save, sweet } = new SweetSS({
   __filename,
-  sweetSS: [],
+  sweetSS: [SVGS],
   prefix: "s",
 });
 
@@ -11,7 +13,7 @@ export default sweet;
 
 cx.svg = [
   //
-  $.MAX.WIDTH[90],
+  $.MAX.WIDTH[110],
   $.WIDTH.pr100,
   $.FLEX.column.grow(1),
 ];
@@ -45,21 +47,27 @@ cx.LOGO = [
 
 cx.svgs = [
   //
-  $.FLEX.column.CENTER.start.gap2.grow(1),
+  $.FLEX.column.CENTER.start.grow(1),
   $.WIDTH.pr100,
   $.HEIGHT.pr100,
 ];
 
 cx.LIST = [
   //
-  $.FLEX.CENTER.center.gap2,
+  $.FLEX.CENTER.start.gap2,
   $.LIST.none,
   $.WIDTH.pr100,
-  $.PADDING.BLOCK[1],
-
+  $.ZIndex[1],
+  $.PADDING.LEFT[2],
+  $.POSITION.sticky,
+  $.TOP[5].LG[0],
+  $.HEIGHT[10],
+  $.BG.color(_bgc),
+  $.noSelect,
+  $.ZIndex[2],
   ps.desc(".slctd")(
     //
-    $.COLOR.AUTODARK.forestgreen,
+    $.COLOR.AUTODARK.antiquewhite,
     $.FONT.bold,
     $.POSITION.relative,
 
@@ -94,12 +102,15 @@ cx.MAIN = [
   //
 
   $.WIDTH.pr100,
-  $.HEIGHT.pr100,
-  $.POSITION.sticky,
-  $.TOP[0],
-  $.PADDING[1],
+  $.HEIGHT.auto,
   $.FLEX.column.grow(1),
 ];
+
+/*
+-------------------------
+Main CLSS
+-------------------------
+*/
 
 /*
 -------------------------

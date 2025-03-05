@@ -50,7 +50,7 @@ class er1 extends response {
 }
 
 index({
-  path: "/svg/material",
+  path: "/svg/box",
 });
 
 // serve();

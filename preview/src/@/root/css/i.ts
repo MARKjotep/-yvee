@@ -49,7 +49,7 @@ dom.html = [
 ];
 
 dom.body = [
-  $.OVERFLOW.Y.auto.X.auto,
+  $.OVERFLOW.Y.scroll.X.auto.NO_HOVER.Y.auto,
   $.FONT.google.SIZE[1.3],
   $.BG.color(_bgc),
 
@@ -99,7 +99,7 @@ ROOT
 
 cx.root = [
   //
-  $.FLEX.columnReverse.SMD.column.LG.row,
+  $.FLEX.column.LG.row,
   $.FLEX.CENTER.start.LG.START.start,
   $.WIDTH.pr100,
   $.MIN.HEIGHT.screen,

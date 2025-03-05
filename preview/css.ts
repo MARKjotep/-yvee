@@ -17,6 +17,7 @@ const Watcher = (...sss: SweetSS[]) => {
   watcher.on("change", (_path) => {
     sss.some((ss) => {
       const { imported, path } = ss;
+
       if (imported.includes(_path) || path === _path) {
         Bun.spawn(["bun", "run", path], {
           stdio: ["inherit", "inherit", "inherit"],

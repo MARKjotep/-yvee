@@ -1,7 +1,7 @@
 import { $$, doc, Dom, frag, dom, Routes } from "yvee";
 import Body from "../@/root";
 import CSS from "./i.css";
-import { load, path } from "./svgs";
+import { load, path } from "../svgs";
 
 export default Routes((r) => {
   //

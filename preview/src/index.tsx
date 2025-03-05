@@ -1,4 +1,4 @@
-import { Dom, dom, Yvee, doc } from "yvee";
+import { $$, Dom, dom, Yvee, doc } from "yvee";
 import Head from "./@/head";
 import Error from "./error/router";
 import ROOT from "./HOME/router";

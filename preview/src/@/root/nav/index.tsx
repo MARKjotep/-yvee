@@ -1,7 +1,7 @@
-import { $, $$, frag, dom, __ } from "yvee";
+import { $, $$, frag, dom, __, useRef } from "yvee";
 import * as i from "./css";
 import { A, path } from "../../..";
-import { CategoryAlt, Health } from "@yvee/box-svg";
+import { CategoryAlt, Health, Github_logo } from "@yvee/box-svg";
 import { Yvee } from "../../svg";
 
 const aces = {
@@ -21,14 +21,37 @@ const aces = {
 
 export default (a: attr & { isM?: boolean }, ...D: ctx[]) => {
   //
-  const { isM, ..._a } = a;
-
+  const { isM, on, ..._a } = a;
   __.class(_a, [i.navy]);
 
   const PT = path.value;
 
+  const navRef = useRef();
+  let isActive = false;
+  let lastScrll = 0;
+
+  const _e: events = {
+    ...((on as events) ?? {}),
+    winscroll(e) {
+      const wscrl = window.scrollY;
+      if (wscrl > 50) {
+        if (!isActive) {
+          navRef.$?.add(i.actv);
+          isActive = true;
+        }
+      } else {
+        if (isActive) {
+          navRef.$?.remove(i.actv);
+          isActive = false;
+        }
+      }
+
+      lastScrll = wscrl;
+    },
+  };
+
   return (
-    <nav {..._a}>
+    <nav {..._a} on={_e} ref={navRef}>
       <ul class={[i.list]}>
         {__.O.items(aces).map(([k, v]) => {
           let isc = undefined;
@@ -61,7 +84,9 @@ const Marky = ({ is = false }) => {
       draggable="false"
       class={[i.lia, i.marky]}
     >
-      <span>{/* <logo.Github /> */}</span>
+      <span>
+        <Github_logo />
+      </span>
       <span>MARKjotep</span>
     </a>
   );

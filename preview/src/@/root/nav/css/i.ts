@@ -8,6 +8,7 @@ import {
   tJour,
   tProj,
   tMarky,
+  _bgc,
 } from "../../../vars";
 
 const { cx, kf, save, sweet } = new SweetSS({
@@ -18,17 +19,48 @@ const { cx, kf, save, sweet } = new SweetSS({
 
 export default sweet;
 
-const { before } = ps;
+export const navHeight = 7;
 
 cx.navy = [
   $.POSITION.sticky,
-  $.BOTTOM[0].SMD.auto,
-  $.TOP.SMD[0],
-  $.MIN.HEIGHT[7].LG.screen,
+  $.TOP[0],
+  $.MIN.HEIGHT[navHeight].LG.screen,
   $.WIDTH.pr100.LG.auto,
   $.FLEX.CENTER.start.LG.START.start,
   $.FLEX.LG.column,
   $.DISPLAY.flex.PRINT.none,
+  $.ZIndex[3],
+];
+
+cx.actv = [
+  //
+
+  ps.before()(
+    //
+    $.POSITION.absolute,
+    $.HEIGHT.pr100,
+    $.WIDTH.pr100,
+    $.TOP[0],
+    $.ZIndex[-1],
+    // $.BG.IMAGE.linear("to right", ["transparent", "2rem"], "#57575734", [
+    //   "transparent",
+    //   f.calc("100% - 2rem"),
+    // ]).LG.none,
+    $.TRANSITION.DURATION[0.25],
+    $.TRANSITION.TIMING.ease_in,
+    $.TRANSITION.PROPERTY.property("all"),
+    $.BG.color(_bgc),
+  ),
+];
+
+cx.ahide = [
+  //
+
+  $.BG.COLOR.random,
+  $.transform({
+    translateY: -4,
+  }),
+  $.OPACITY[0],
 ];
 
 const _nClr = Var({ _nClr: _clr });
@@ -99,7 +131,7 @@ cx.slctd = [
   $.OPACITY[1],
   // $.FONT.bold,
   //
-  before()(
+  ps.before()(
     //
     $.HEIGHT.pr100,
     $.WIDTH.pr100,

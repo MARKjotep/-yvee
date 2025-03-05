@@ -10,7 +10,7 @@ export default (a: attr, ...D: ctx[]) => {
         <div>SVG</div>
       </div>
       <div class={[i.hero_desc]}>
-        <p>Material, Box SVG 🌱</p>
+        <p>Yvee SVG 🌱</p>
       </div>
     </div>
   );
