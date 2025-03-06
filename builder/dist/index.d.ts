@@ -1,6 +1,19 @@
 import { WatchEventType } from 'node:fs';
 import { BunPlugin } from 'bun';
 
+interface buildrCFG {
+    files: string[];
+    target?: "browser" | "bun";
+    define?: Record<string, any>;
+    hashAsset?: boolean;
+    external?: string[];
+    drop?: string[];
+    plugins?: BunPlugin[];
+    out?: string;
+    dir?: string;
+    base?: string;
+    successFN?: () => Promise<void>;
+}
 declare class Builder {
     dir: string;
     out: string;
@@ -14,18 +27,7 @@ declare class Builder {
     plugins: BunPlugin[];
     successFN?: () => Promise<void>;
     private clearing?;
-    constructor({ files, target, define, hashAsset, external, drop, plugins, out, dir, successFN, }: {
-        files: string[];
-        target?: "browser" | "bun";
-        define?: Record<string, any>;
-        hashAsset?: boolean;
-        external?: string[];
-        drop?: string[];
-        plugins?: BunPlugin[];
-        out?: string;
-        dir?: string;
-        successFN?: () => Promise<void>;
-    });
+    constructor({ files, target, define, hashAsset, external, drop, plugins, out, dir, base, successFN, }: buildrCFG);
     clear(c?: {
         exclude: string[];
     }): this;

@@ -11,6 +11,20 @@ import { isDir } from "./@/bun";
 import { $$, isFN, ngify, oFItems, oItems, oLen } from "./@";
 import { BunPlugin } from "bun";
 
+interface buildrCFG {
+  files: string[];
+  target?: "browser" | "bun";
+  define?: Record<string, any>;
+  hashAsset?: boolean;
+  external?: string[];
+  drop?: string[];
+  plugins?: BunPlugin[];
+  out?: string;
+  dir?: string;
+  base?: string;
+  successFN?: () => Promise<void>;
+}
+
 export default class Builder {
   dir: string;
   out: string;
@@ -34,21 +48,12 @@ export default class Builder {
     plugins = [],
     out = "./app",
     dir = "./src",
+    base = "",
     successFN,
-  }: {
-    files: string[];
-    target?: "browser" | "bun";
-    define?: Record<string, any>;
-    hashAsset?: boolean;
-    external?: string[];
-    drop?: string[];
-    plugins?: BunPlugin[];
-    out?: string;
-    dir?: string;
-    successFN?: () => Promise<void>;
-  }) {
-    this.out = out;
-    this.dir = dir;
+  }: buildrCFG) {
+    this.out = out + base;
+    this.dir = dir + base;
+
     this.files = files.map((m) => (this.dir + "/" + m).replaceAll("//", "/"));
     this.hashAsset = hashAsset == undefined ? true : hashAsset;
     this.external = external;
