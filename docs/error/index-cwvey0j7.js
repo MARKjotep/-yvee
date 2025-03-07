@@ -1,0 +1,1 @@
+import{a as t}from"../index.js";import"../index-jba0x5bt.js";import"../index-sq5hhhz5.js";import"../index-g5fz9tcv.js";import{K as r}from"../index-py8jdk30.js";var{A:e,path:i}=t,v=async({ab:o})=>{return r("div",null,r("div",null,o??i.value," not found"),r(e,{href:"/"},"home"))};export{v as default};
