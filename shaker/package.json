@@ -1,7 +1,7 @@
 {
-  "name": "@yvee/material-svg",
-  "version": "0.0.8",
-  "description": "Material SVG utility",
+  "name": "@yvee/shaker",
+  "version": "0.0.1",
+  "description": "CSS tree shaker",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,7 +13,7 @@
     "@": "ln -sf ../../../misc/@/ ./src",
     "ts": "ln -sf ../../misc/tsconfig.json ./;",
     "init": "bun run dirs && bun run util && bun run @ && bun run ts;",
-    "build": "rm -r ./types ; tsc && bun build ./src/index.tsx --outdir ./dist --minify --packages external --target browser && rollup -c ./util/rollup.config.js"
+    "build": "rm -r ./types ; tsc && bun build ./src/index.ts --outdir ./dist --minify --packages external --target bun && rollup -c ./util/rollup.config.js"
   },
   "keywords": [
     "css",
@@ -30,8 +30,18 @@
     "url": "https://github.com/MARKjotep/-yvee/issues"
   },
   "homepage": "https://github.com/MARKjotep/-yvee#readme",
+  "dependencies": {
+    "@babel/parser": "^7.28.3",
+    "@babel/traverse": "^7.28.3",
+    "@types/babel__traverse": "^7.28.0",
+    "fast-glob": "^3.3.3"
+  },
   "devDependencies": {
-    "yvee": "latest"
+    "@types/node": "^22.17.2",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.3"
   },
   "publishConfig": {
     "access": "public"

@@ -8,8 +8,9 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { isDir } from "./@/bun";
-import { $$, isFN, ngify, oFItems, oItems, oLen } from "./@";
+import { log, isFN, makeID, ngify, oAss, oFItems, oItems, oLen } from "./@";
 import { BunPlugin } from "bun";
+import { rollup, ModuleFormat, InputPluginOption } from "rollup";
 
 interface buildrCFG {
   files: string[];
@@ -22,8 +23,15 @@ interface buildrCFG {
   out?: string;
   dir?: string;
   base?: string;
+  minify?: _minify;
   successFN?: () => Promise<void>;
 }
+
+type _minify = {
+  identifiers?: boolean;
+  whitespace?: boolean;
+  syntax?: boolean;
+};
 
 export default class Builder {
   dir: string;
@@ -32,12 +40,16 @@ export default class Builder {
   external: string[];
   drop: string[];
   target: string;
-  define: Record<string, any>;
+  define: Record<string, any> = {
+    YVEE_ID: () => makeID(4),
+  };
   exclude: string[] = [];
   hashAsset: boolean;
   plugins: BunPlugin[] = [];
-  successFN?: () => Promise<void>;
+  protected successFN?: () => Promise<void>;
   private clearing?: boolean = false;
+  minify: _minify;
+
   constructor({
     files,
     target = "browser",
@@ -46,27 +58,32 @@ export default class Builder {
     external = [],
     drop = [],
     plugins = [],
-    out = "./app",
+    out = "./client",
     dir = "./src",
     base = "",
+    minify = {},
     successFN,
   }: buildrCFG) {
     this.out = out + base;
     this.dir = dir + base;
-
+    this.minify = { identifiers: true, whitespace: true, syntax: true };
+    oAss(this.minify, minify);
     this.files = files.map((m) => (this.dir + "/" + m).replaceAll("//", "/"));
-    this.hashAsset = hashAsset == undefined ? true : hashAsset;
+    this.hashAsset = hashAsset === undefined ? false : hashAsset;
     this.external = external;
     this.drop = drop;
     this.plugins = plugins;
     isDir(this.out);
     this.target = target;
     this.successFN = successFN;
-    this.define = define;
+
+    oAss(this.define, define);
   }
-  clear(c: { exclude: string[] } = { exclude: [] }) {
+  clear(
+    c: { exclude?: string[]; all?: boolean } = { exclude: [], all: false },
+  ) {
     //
-    c.exclude.length && this.exclude.push(...c.exclude);
+    c.exclude && c.exclude.length && this.exclude.push(...c.exclude);
 
     this.clearing = true;
 
@@ -79,10 +96,10 @@ export default class Builder {
       dirs.forEach((ff) => {
         if (
           ff.startsWith(".") ||
-          ff.endsWith(".html") ||
-          this.exclude.includes(ff)
-        )
+          (!c.all && (ff.endsWith(".html") || this.exclude.includes(ff)))
+        ) {
           return;
+        }
         const _path = path.join(_PATH, ff);
         if (statSync(_path).isDirectory()) {
           recurse(_path);
@@ -105,11 +122,7 @@ export default class Builder {
           entrypoints: this.files,
           outdir: this.out,
           splitting: true,
-          minify: {
-            identifiers: true,
-            whitespace: true,
-            syntax: true,
-          },
+          minify: this.minify,
           target: (this.target as "browser") ?? "browser",
           naming: {
             chunk: "[dir]/[name]-[hash].[ext]",
@@ -129,29 +142,29 @@ export default class Builder {
 
         if (Build.success) {
           const dt = new Date().toLocaleTimeString();
-          $$.p = `builder @ ${dt}`;
+          log.i = `builder @ ${dt}`;
           // run fn here
           try {
             await this.successFN?.();
           } catch (e) {
-            $$.p = e;
+            log.i = e;
           }
         } else {
-          $$.p = Build.logs;
+          log.i = Build.logs;
         }
       } catch (e) {
-        $$.p = e;
+        log.i = e;
       }
     }
 
     return this;
   }
-  async watch(fn?: (event: WatchEventType, filename: string | null) => void) {
+  async watch(condition: (filename: string) => boolean = () => true) {
     const watcher = watch(
       this.dir,
       { recursive: true },
       async (event, filename) => {
-        if (filename && filename.endsWith("tsx")) {
+        if (filename && condition(filename)) {
           this.clearing && this.clear();
           try {
             await this.build();
@@ -159,7 +172,6 @@ export default class Builder {
             console.error(e);
           }
         }
-        fn?.(event, filename);
       },
     );
 
@@ -168,6 +180,9 @@ export default class Builder {
       watcher.close();
       process.exit(0);
     });
+  }
+  set onsuccess(fn: () => Promise<void>) {
+    this.successFN = fn;
   }
 }
 
@@ -182,3 +197,34 @@ const ProcessDefine = (define: Record<string, any>) => {
     }),
   );
 };
+
+export async function RollUP({
+  input,
+  output,
+  format = "es",
+  external = [],
+  plugins = [],
+  fn,
+}: {
+  input: string;
+  output: string;
+  format?: ModuleFormat;
+  external?: string[];
+  plugins: InputPluginOption;
+  fn?: () => void;
+}) {
+  const bundle = await rollup({
+    input,
+    plugins,
+    external,
+  });
+
+  await bundle.write({
+    file: output,
+    format,
+  });
+
+  const dt = new Date().toLocaleTimeString();
+  log.i = `rollup @ ${dt}`;
+  fn?.();
+}

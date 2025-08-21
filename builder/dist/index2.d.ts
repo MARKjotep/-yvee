@@ -1,3 +1,4 @@
+import { WatchEventType } from 'node:fs';
 import { BunPlugin } from 'bun';
 import { ModuleFormat, InputPluginOption } from 'rollup';
 
@@ -40,7 +41,7 @@ declare class Builder {
         all?: boolean;
     }): this;
     build(): Promise<this>;
-    watch(condition?: (filename: string) => boolean): Promise<void>;
+    watch(fn?: (event: WatchEventType, filename: string | null) => void): Promise<void>;
     set onsuccess(fn: () => Promise<void>);
 }
 declare function RollUP({ input, output, format, external, plugins, fn, }: {

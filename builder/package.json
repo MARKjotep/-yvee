@@ -1,6 +1,6 @@
 {
   "name": "@yvee/builder",
-  "version": "0.0.7",
+  "version": "0.0.21",
   "description": "Yvee builder",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,8 +31,10 @@
   },
   "homepage": "https://github.com/MARKjotep/-yvee#readme",
   "devDependencies": {
-    "@types/node": "^22.13.5",
-    "@types/bun": "latest"
+    "@types/node": "^22.17.2",
+    "@types/bun": "latest",
+    "rollup-plugin-dts": "^6.2.3",
+    "rollup": "^4.47.1"
   },
   "peerDependencies": {
     "typescript": "^5.7.3"
